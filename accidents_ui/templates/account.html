@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row container">
+  <div class="mr-auto">
+    <h3>{{ user.name }}</h3>
+    <p>@{{ user.username }}</p>
+  </div>
+  {% if user == current_user %}
+  <div>
+    <a href="{{ url_for('users.edit_account', username=current_user.username) }}" class="btn btn-secondary">
+      <i class="fas fa-edit"></i>Edit
+    </a>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock content %}

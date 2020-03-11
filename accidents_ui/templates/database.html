@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-around">
+		<a class="btn btn-outline-info" href="{{ url_for('database.view_records') }}">View database</a>
+		<a class="btn btn-outline-info" href="{{ url_for('database.add_records') }}">Add Record</a>
+</div>
+
+{% endblock content %}
+

@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="d-flex justify-content-around">
+		<a class="btn btn-outline-info" href="{{ url_for('database.add_person') }}">Add Person</a>
+		<a class="btn btn-outline-info" href="{{ url_for('database.add_car') }}">Add Car</a>
+		<a class="btn btn-outline-info" href="{{ url_for('database.add_owner') }}">Add Owner</a>
+		<a class="btn btn-outline-info" href="{{ url_for('database.add_accident') }}">Add Accident</a>
+		<a class="btn btn-outline-info" href="{{ url_for('database.add_participation') }}">Add Participation</a>
+
+</div>
+
+{% endblock content %}

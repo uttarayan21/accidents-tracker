@@ -1,0 +1,12 @@
+{
+  "SQLALCHEMY_TRACK_MODIFICATIONS":"False",
+  "SECRET_KEY": "67d549cbb3e356698c642667",
+  "DB" :{
+    "DB_NAME": "accidents_db",
+    "DB_HOST": "localhost",
+    "DB_TYPE": "postgresql",
+    "DB_PASSWORD": "GreenHouse1321",
+    "DB_USER": "accidents_db_mgr"
+  }
+
+}

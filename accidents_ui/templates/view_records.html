@@ -1,0 +1,89 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form method="GET" action="">
+    {{ form.hidden_tag() }}
+	<fieldset class="form-group">
+		<legend class="border-bottom mb-4">Search The Database</legend>
+		<div class="form-group">
+		    {{ form.query.label(class="form-control-label") }}
+		    {% if form.query.error %}
+				{{ form.query(class="form-control form-control-lg is-invalid") }}
+				<div class="invalid-feedback">
+						{% for error in form.query.errors %}
+						<span>{{ error }}</span>
+				    {% endfor %}
+				</div>
+		    {% else %}
+		        {{ form.query(class="form-control form-control-lg") }}
+		    {% endif %}
+		</div>
+		<div class="form-group">
+		    {{ form.db.label(class="form-control-label") }}
+			{% if form.db.error %}
+				{{ form.db(clas="form-control form-control-lg is-invalid") }}
+				<div class="invalid-feedback">
+				    {% for error in form.db.errors %}
+				    <span>{{ error }}</span>
+				    {% endfor %}
+				</div>
+		    {% else %}
+				{{ form.db(class="form-control form-control-lg") }}
+			{% endif %}
+		</div>
+	</fieldset>
+    <div class="form-group">
+		{{ form.search(class="btn btn-outline-info") }}
+    </div>
+</form>
+
+
+{% if results != None %}
+
+{% if results %}
+<table class="table">
+  <thread>
+    <tr>
+      {% if form.db.data == 'person' %} 
+	  <th scope="col">Name</th>
+	  <th scope="col">Driver ID</th>
+	  <th scope="col">Address</th>
+	  {% elif form.db.data == 'car' %}
+
+	  <th scope="col">Registration Number</th>
+	  <th scope="col">Model</th>
+	  <th scope="col">Year</th>
+      {% elif form.db.data == 'accident' %}
+	  <th scope="col">Report Number</th>
+	  <th scope="col">Location</th>
+	  <th scope="col">Date</th>
+	  {% endif %}
+    </tr>
+  <thread>
+  <tbody>
+    {% for result in results %}
+    <tr>
+      {% if form.db.data == 'person' %}
+	  <td>{{ result.name }}</td>
+	  <td>{{ result.driver_id }}</td>
+	  <td>{{ result.address }}</td>
+	  {% elif form.db.data == 'car' %}
+	  <td>{{ result.reg_no }}</td>
+	  <td>{{ result.model }}</td>
+	  <td>{{ result.year }}</td>
+	  {% elif form.db.data == 'accidents' %}
+	  <td>{{ result.report_no }}</td>
+	  <td>{{ result.location }}</td>
+	  <td>{{ result.date }}</td>
+	  {% endif %}
+	</tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="alert alert-danger">
+No result was found with that query
+</div>
+{% endif %}
+{% endif %}
+{% endblock content %}
+

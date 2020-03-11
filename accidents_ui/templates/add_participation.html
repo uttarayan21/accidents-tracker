@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <form method="POST" action="">
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class="border-bottom mb-4">Add People to the database</legend>
+			<div class="form-group">
+				{{ form.driver_id.label(class="form-control-label") }}
+				{% if form.driver_id.errors %}
+				    {{ form.driver_id(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.driver_id.errors %}
+						    <span>{{ error }}</span>
+						{% endfor %}
+				    </div>
+				{% else %}
+				    {{ form.driver_id(class="form-control from-control-lg") }}
+				{% endif %}
+			</div>
+			
+			<div class="form-group">
+				{{ form.reg_no.label(class="form-control-label") }}
+				{% if form.reg_no.errors %}
+				    {{ form.reg_no(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.reg_no.errors %}
+						    <span>{{ error }}</span>
+						{% endfor %}
+				    </div>
+				{% else %}
+				    {{ form.reg_no(class="form-control from-control-lg") }}
+				{% endif %}
+		    </div>
+
+			<div class="form-group">
+				{{ form.report_no.label(class="form-control-label") }}
+				{% if form.report_no.errors %}
+				    {{ form.report_no(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.report_no.errors %}
+						    <span>{{ error }}</span>
+						{% endfor %}
+				    </div>
+				{% else %}
+				    {{ form.report_no(class="form-control from-control-lg") }}
+				{% endif %}
+		    </div>
+
+			<div class="form-group">
+				{{ form.damage_amt.label(class="form-control-label") }}
+				{% if form.damage_amt.errors %}
+				    {{ form.damage_amt(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.damage_amt.errors %}
+						    <span>{{ error }}</span>
+						{% endfor %}
+				    </div>
+				{% else %}
+				    {{ form.damage_amt(class="form-control from-control-lg") }}
+				{% endif %}
+		    </div>
+
+		</fieldset>
+		<div class="form-group">
+		    {{ form.submit(class="btn btn-outline-info") }}
+		</div>
+    </form>
+{% endblock content %}

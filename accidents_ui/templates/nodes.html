@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class="row">
+        <div class="mr-auto">
+            <h3>{{ current_user.name }}</h3>
+            <p>@{{ current_user.username }}</p>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-between m-2">
+      <h5>Nodes</h5>
+      <a href="{{ url_for('nodes.create_node') }}" class="btn btn-outline-info btn-sm" type="button" name="button">Create Node</a>
+    </div>
+    <ul class="list-group">
+        {% for node in nodes %}
+            <li class="list-group-item">
+              <div class="d-flex flex-row justify-content-between">
+                <h5>
+                  {{ node.name }}
+                </h5>
+                <a href="{{ url_for('nodes.edit_node', name=node.name) }}" class="btn btn-secondary btn-sm m-2">
+                  <i class="fas fa-edit"></i>Edit
+                </a>
+              </div>
+              <div class="d-flex flex-row justify-content-between">
+                <div class="text-dark">
+                    {% if node.desc %}
+                        {{ node.desc }}
+                    {% endif %}
+                </div>
+                <div class="text-muted">
+                    Created on: {{ node.date_created.strftime('%d/%m/%Y') }}
+                </div>
+              </div>
+            </li>
+        {% else %}
+            <li class="list-group-item">No nodes found for {{ current_user.name }}. <a href="{{ url_for('nodes.create_node') }}">Create a node now</a>.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

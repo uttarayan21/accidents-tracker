@@ -12,7 +12,8 @@ app.url_map.strict_slashes = True # Ignores trailing slashes
 
 login_manager = LoginManager()
 bcrypt = Bcrypt()
-
+login_manager.login_view = 'users.login'
+login_manager.login_message_category = 'info'
 
 # Register Flask extensions
 db.init_app(app)

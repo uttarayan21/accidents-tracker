@@ -7,8 +7,8 @@ from accidents_db.models import Person, Car, Owns, Accident
 
 class AddPerson(FlaskForm):
     driver_id = StringField('Driver ID', validators=[DataRequired()])
-    name = StringField('Name', validators=[DataRequired(), Length(min=5, max=100)])
-    address = StringField('Address', validators=[DataRequired(), Length(min=5, max=100)])
+    name = StringField('Name', validators=[DataRequired(), Length(max=100)])
+    address = StringField('Address', validators=[DataRequired(), Length(max=100)])
     submit = SubmitField('Add Person')
 
     def validate_driver_id(self, driver_id):
@@ -94,3 +94,16 @@ class AddParticipation(FlaskForm):
         car = Owns.query.filter_by(reg_no=reg_no.data).first()
         if car:
             raise ValidationError('Car with that registration is already owned')
+
+class EditForm(FlaskForm):
+    driver_id = StringField('Driver ID', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired(), Length(max=100)])
+    address = StringField('Address', validators=[DataRequired(), Length(max=100)])
+    submit = SubmitField('Add Person')
+
+    def validate_driver_id(self, driver_id):
+        person = Person.query.filter_by(driver_id=driver_id.data).first() 
+        if person:
+            if not person.driver_id == driver_id.data:
+                raise ValidationError('Driver ID is already present')
+
